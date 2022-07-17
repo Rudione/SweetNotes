@@ -1,4 +1,4 @@
-package com.example.sweetnotes.presentation.theme
+package com.example.sweetnotes.presentation.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

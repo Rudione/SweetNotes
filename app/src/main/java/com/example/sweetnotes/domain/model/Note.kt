@@ -17,3 +17,5 @@ data class Note(
         val noteColors = Colors.values()
     }
 }
+
+class InvalidNoteException(message: String): Exception(message)
