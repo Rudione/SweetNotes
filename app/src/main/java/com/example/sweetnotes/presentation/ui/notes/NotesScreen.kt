@@ -46,17 +46,14 @@ fun NotesScreen (
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(21.dp)
         ) {
+            // Line of text and order point
             Row(
-                modifier = Modifier.fillMaxSize(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Start,
+                verticalAlignment = Alignment.Top
             ) {
-                Text(
-                    text = "Your Note",
-                    style = MaterialTheme.typography.h4
-                )
                 IconButton(
                     onClick = {
                         viewModel.onEvent(NotesEvent.ToggleOrderSection)
@@ -67,7 +64,12 @@ fun NotesScreen (
                         contentDescription = "Sort"
                     )
                 }
+                Text(
+                    text = "All Notes",
+                    style = MaterialTheme.typography.h4
+                )
             }
+            // orders and his animate
             AnimatedVisibility(
                 visible = state.isOrderSectionVisible,
                 enter = fadeIn() + slideInVertically(),
@@ -83,7 +85,8 @@ fun NotesScreen (
                    }
                )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(24.dp))
+            // Note
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(state.notes) { note ->
                     NoteItem(
@@ -109,7 +112,7 @@ fun NotesScreen (
                             }
                         }
                     )
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(18.dp))
                 }
             }
         }
