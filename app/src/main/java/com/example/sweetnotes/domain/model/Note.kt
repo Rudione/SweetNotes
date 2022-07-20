@@ -1,8 +1,9 @@
 package com.example.sweetnotes.domain.model
 
+import androidx.compose.ui.graphics.Color
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.sweetnotes.domain.common.Colors
+import com.example.sweetnotes.presentation.ui.theme.*
 
 @Entity
 data class Note(
@@ -14,7 +15,7 @@ data class Note(
     val color: Int
 ) {
     companion object {
-        val noteColors = Colors.values()
+        val noteColors = listOf(blueTop, luxuryBlue, bottomBlue, pinkTop, roseMedium)
     }
 }
 

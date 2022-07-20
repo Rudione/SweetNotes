@@ -3,6 +3,7 @@ package com.example.sweetnotes.presentation.ui.notes.components
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.RadioButton
 import androidx.compose.material.RadioButtonDefaults
@@ -29,10 +30,10 @@ fun DefaultRadioButton(
             onClick = onSelect,
             colors = RadioButtonDefaults.colors(
                 selectedColor = MaterialTheme.colors.primary,
-                unselectedColor = MaterialTheme.colors.background
+                unselectedColor = MaterialTheme.colors.onBackground
             )
         )
-        Spacer(modifier = Modifier.padding(8.dp))
-        Text(text = text, style = MaterialTheme.typography.h4)
+        Spacer(modifier = Modifier.width(8.dp))
+        Text(text = text, style = MaterialTheme.typography.body1)
     }
 }

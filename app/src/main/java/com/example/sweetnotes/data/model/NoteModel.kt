@@ -2,7 +2,6 @@ package com.example.sweetnotes.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.sweetnotes.domain.common.Colors
 
 @Entity
 data class NoteModel(
@@ -11,9 +10,9 @@ data class NoteModel(
     val title: String,
     val content: String,
     val timestamp: Long,
-    val color: List<Colors>
+   // val color: List<Colors>
 ) {
     companion object {
-        val noteColors = Colors.values()
+      //  val noteColors = Colors.values()
     }
 }

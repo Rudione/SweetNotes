@@ -9,18 +9,20 @@ import com.example.sweetnotes.domain.usecase.NoteUseCases
 import com.example.sweetnotes.domain.util.NoteOrder
 import com.example.sweetnotes.domain.util.OrderType
 import com.example.sweetnotes.presentation.model.NoteState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class NoteViewModel @Inject constructor(
     private val useCases: NoteUseCases
 ) : ViewModel() {
 
     private val _state = mutableStateOf(NoteState())
-    private val state: State<NoteState> = _state
+    val state: State<NoteState> = _state
 
     private var recentlyDeletedNote: Note? = null
 
