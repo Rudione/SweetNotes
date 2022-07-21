@@ -1,6 +1,7 @@
 package com.example.sweetnotes.presentation.ui.notes
 
 import androidx.compose.animation.*
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,8 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.sweetnotes.R
 import com.example.sweetnotes.presentation.ui.notes.components.NoteItem
 import com.example.sweetnotes.presentation.ui.notes.components.OrderSection
 import com.example.sweetnotes.presentation.util.Screen
@@ -36,13 +41,20 @@ fun NotesScreen (
                 onClick = {
                     navController.navigate(Screen.AddEditNoteScreen.route)
                 },
-                backgroundColor = MaterialTheme.colors.primaryVariant
+                backgroundColor = MaterialTheme.colors.primaryVariant,
+                contentColor = Color.White.copy(0.8f)
             ) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
             }
         },
         scaffoldState = scaffoldState
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.img),
+            contentDescription = "mainscreen",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -61,11 +73,14 @@ fun NotesScreen (
                 ) {
                     Icon(
                         imageVector = Icons.Default.List,
+                        tint = Color.White,
                         contentDescription = "Sort"
                     )
                 }
+                Spacer(modifier = Modifier.padding(32.dp))
                 Text(
                     text = "All Notes",
+                    color = Color.White,
                     style = MaterialTheme.typography.h4
                 )
             }

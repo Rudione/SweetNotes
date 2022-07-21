@@ -10,10 +10,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -41,7 +39,7 @@ fun AddEditNoteScreen(
     val noteBackgroundAnimatable = remember {
         Animatable(
             Color(
-                if(noteColor != -1) noteColor else viewModel.noteColor.value
+                if (noteColor != -1) noteColor else viewModel.noteColor.value
             )
         )
     }
@@ -50,7 +48,7 @@ fun AddEditNoteScreen(
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
-            when(event) {
+            when (event) {
                 is AddEditNoteViewModel.UiEvent.SaveNote -> {
                     navController.navigateUp()
                 }
@@ -75,16 +73,19 @@ fun AddEditNoteScreen(
         },
         scaffoldState = scaffoldState
     ) {
-        Column(modifier = Modifier
-            .fillMaxSize()
-            .background(noteBackgroundAnimatable.value)
-            .padding(16.dp)
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(noteBackgroundAnimatable.value)
+                .padding(16.dp)
         ) {
-            Row(
+            // Color picker
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .fillMaxHeight()
+                    .padding(12.dp),
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Note.noteColors.forEach { color ->
                     val colorInt = color.toArgb()
@@ -115,34 +116,40 @@ fun AddEditNoteScreen(
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(16.dp))
-            HintTextField(
-                text = titleState.text,
-                hint = titleState.hint,
-                onValueChange = {
-                    viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
-                },
-                onFocusChange = {
-                    viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))
-                },
-                isHintVisible = titleState.isVisibleHint,
-                singleLine = true,
-                textStyle = MaterialTheme.typography.h5
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            HintTextField(
-                text = contentState.text,
-                hint = contentState.hint,
-                onValueChange = {
-                    viewModel.onEvent(AddEditNoteEvent.EnteredContent(it))
-                },
-                onFocusChange = {
-                    viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
-                },
-                isHintVisible = contentState.isVisibleHint,
-                textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxHeight()
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(12.dp),
+                horizontalAlignment = Alignment.End
+            ) {
+                HintTextField(
+                    text = titleState.text,
+                    hint = titleState.hint,
+                    onValueChange = {
+                        viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
+                    },
+                    onFocusChange = {
+                        viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))
+                    },
+                    isHintVisible = titleState.isVisibleHint,
+                    singleLine = true,
+                    textStyle = MaterialTheme.typography.h4
+                )
+                Spacer(modifier = Modifier.height(24.dp))
+                HintTextField(
+                    text = contentState.text,
+                    hint = contentState.hint,
+                    onValueChange = {
+                        viewModel.onEvent(AddEditNoteEvent.EnteredContent(it))
+                    },
+                    onFocusChange = {
+                        viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
+                    },
+                    isHintVisible = contentState.isVisibleHint,
+                    textStyle = MaterialTheme.typography.body1,
+                    modifier = Modifier.fillMaxHeight(0.7f)
+                )
+            }
         }
     }
 }
