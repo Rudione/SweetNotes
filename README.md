@@ -26,4 +26,4 @@ Have you been looking for a simple and intuitive note-taking app for a long time
 
 # Link to download (Play Market)
 
-[SOON](https://play.google.com/)
+[CLICK](https://play.google.com/store/apps/details?id=my.rudione.sweetnotes)
